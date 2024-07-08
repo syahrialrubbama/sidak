@@ -18,7 +18,7 @@ $(document).ready(function () {
                         datasets: [{
                             label: 'Data Warga Pindah',
                             data: valuePindah,
-                            backgroundColor: 'red',
+                            backgroundColor: 'lightgreen',
                             borderWidth: 1
                         }]
                     },
@@ -42,7 +42,7 @@ $(document).ready(function () {
                         datasets: [{
                             label: 'Data Warga Pendatang',
                             data: valuePendatang,
-                            backgroundColor: 'blue',
+                            backgroundColor: 'lightblue',
                             borderWidth: 1
                         }]
                     },
