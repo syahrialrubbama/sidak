@@ -20,7 +20,7 @@ function handleNoSurat($koneksi)
 
 	$noUrut = (int) $explode[0];
 	$noUrut++;
-	$noSuratOtomatis = str_pad($noUrut, 3, '0', STR_PAD_LEFT) . '/PWT/VI/2024';
+	$noSuratOtomatis = str_pad($noUrut, 3, '0', STR_PAD_LEFT) . '/PWT/VII/2024';
 	return $noSuratOtomatis;
 }
 $noSuratOtomatis = handleNoSurat($koneksi);
