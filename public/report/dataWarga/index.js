@@ -1,4 +1,5 @@
 var body = $('body');
+
 var startDate = moment().format('DD/MM/YYYY');
 var endDate = moment().format('DD/MM/YYYY');
 var dataTable = $('#dataTableReportWarga').DataTable();
@@ -24,8 +25,8 @@ $(document).ready(function () {
             format: 'DD/MM/YYYY'
         }
     }).on('apply.daterangepicker', function (ev, picker) {
-        startDate = picker.startDate.format('YYYY-MM-DD');
-        endDate = picker.endDate.format('YYYY-MM-DD');
+        startDate = picker.startDate.format('DD/MM/YYYY');
+        endDate = picker.endDate.format('DD/MM/YYYY');
     });
 
     var getFilter = () => {

@@ -12,7 +12,7 @@ $(document).ready(function () {
                 const valuePindah = grafik_pindah.map(item => item.jumlah_pindah);
                 const ctxWargaPindah = $('#dashboard #grafik-data-warga-pindah');
                 new Chart(ctxWargaPindah, {
-                    type: 'line',
+                    type: 'bar',
                     data: {
                         labels: labelPindah,
                         datasets: [{
@@ -36,7 +36,7 @@ $(document).ready(function () {
                 const valuePendatang = grafik_pendatang.map(item => item.jumlah_datang);
                 const ctxWargaPendatang = $('#dashboard #grafik-data-warga-pendatang');
                 new Chart(ctxWargaPendatang, {
-                    type: 'line',
+                    type: 'bar',
                     data: {
                         labels: labelPendatang,
                         datasets: [{

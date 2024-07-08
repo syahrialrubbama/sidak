@@ -3,8 +3,13 @@ include "../inc/koneksi.php";
 
 $dataGet = json_decode($_GET['filter'], 1);
 
-$startDate = date('Y-m-d', strtotime($dataGet['tanggalPeriode']['startDate']));
-$endDate = date('Y-m-d', strtotime($dataGet['tanggalPeriode']['endDate']));
+function changeFormat($date)
+{
+    $explode = explode('/', $date);
+    return $explode[2] . '-' . $explode[1] . '-' . $explode[0];
+}
+$startDate = changeFormat($dataGet['tanggalPeriode']['startDate']);
+$endDate = changeFormat($dataGet['tanggalPeriode']['endDate']);
 $jenisKelamin = $dataGet['jenisKelamin'];
 $usia = $dataGet['usia'];
 
@@ -15,8 +20,9 @@ FROM tb_pdd p
 LEFT JOIN tb_anggota a ON p.id_pend = a.id_pend 
 LEFT JOIN tb_kk k ON a.id_kk = k.id_kk 
 WHERE status = 'Ada'";
+
 if (!empty($startDate) && !empty($endDate)) {
-    $sql .= " AND DATE(p.created_at) BETWEEN '$startDate' AND '$endDate'";
+    $sql .= " AND DATE(p.created_at) >= '$startDate' AND DATE(p.created_at) <= '$endDate'";
 }
 
 if (!empty($jenisKelamin)) {
