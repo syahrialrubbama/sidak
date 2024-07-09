@@ -11,7 +11,7 @@
  Target Server Version : 100428 (10.4.28-MariaDB)
  File Encoding         : 65001
 
- Date: 08/07/2024 11:10:50
+ Date: 10/07/2024 01:17:39
 */
 
 SET NAMES utf8mb4;
@@ -31,13 +31,14 @@ CREATE TABLE `tb_anggota`  (
   INDEX `id_kk`(`id_kk` ASC) USING BTREE,
   CONSTRAINT `tb_anggota_ibfk_1` FOREIGN KEY (`id_pend`) REFERENCES `tb_pdd` (`id_pend`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tb_anggota_ibfk_2` FOREIGN KEY (`id_kk`) REFERENCES `tb_kk` (`id_kk`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_anggota
 -- ----------------------------
 INSERT INTO `tb_anggota` VALUES (14, 9, 23, 'Istri');
 INSERT INTO `tb_anggota` VALUES (15, 9, 29, 'Anak');
+INSERT INTO `tb_anggota` VALUES (16, 12, 32, 'Kepala Keluarga');
 
 -- ----------------------------
 -- Table structure for tb_datang
@@ -50,17 +51,22 @@ CREATE TABLE `tb_datang`  (
   `jekel` enum('LK','PR') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `tgl_datang` date NOT NULL,
   `pelapor` int NOT NULL,
+  `nik_pelapor` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `nama_pelapor` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `jekel_pelapor` enum('LK','PR') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   PRIMARY KEY (`id_datang`) USING BTREE,
   INDEX `pelapor`(`pelapor` ASC) USING BTREE,
   CONSTRAINT `tb_datang_ibfk_1` FOREIGN KEY (`pelapor`) REFERENCES `tb_pdd` (`id_pend`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_datang
 -- ----------------------------
-INSERT INTO `tb_datang` VALUES (3, '30282379', 'Pulan Pendatang 1', 'LK', '2024-07-07', 23);
-INSERT INTO `tb_datang` VALUES (4, '302723897', 'Pulan pendatang 2', 'LK', '2024-07-06', 24);
-INSERT INTO `tb_datang` VALUES (5, '8972397', 'Pulan pendatang 3', 'PR', '2024-07-05', 25);
+INSERT INTO `tb_datang` VALUES (3, '30282379', 'Pulan Pendatang 1', 'LK', '2024-07-07', 24, '51023010231020', 'Femi', 'LK');
+INSERT INTO `tb_datang` VALUES (4, '302723897', 'Pulan pendatang 2', 'LK', '2024-07-06', 25, '839829398', 'Bima Ega F.', 'LK');
+INSERT INTO `tb_datang` VALUES (5, '8972397', 'Pulan pendatang 3', 'PR', '2024-07-05', 28, '328982798', 'Data Warga 3', 'LK');
+INSERT INTO `tb_datang` VALUES (7, '23982398', 'gijweogiwj', 'LK', '2024-07-10', 24, '51023010231020', 'Femi', 'LK');
+INSERT INTO `tb_datang` VALUES (8, '3928732987', 'Bima Pendatang', 'LK', '2024-07-10', 32, '389223987', 'giowejgoiwe', 'LK');
 
 -- ----------------------------
 -- Table structure for tb_kk
@@ -78,13 +84,14 @@ CREATE TABLE `tb_kk`  (
   `prov` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `file_kk` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   PRIMARY KEY (`id_kk`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_kk
 -- ----------------------------
 INSERT INTO `tb_kk` VALUES (9, '32923889', 'Mas Jito', 'Alamat mas jito', '04', '05', 'Kisaran', 'Asahan', 'Sumatera Utara', 'default.png');
 INSERT INTO `tb_kk` VALUES (11, '3202839', 'Sutejo', 'alamatt sutejo', '04', '05', 'Kisaran', 'Asahan', 'Sumatera Utara', '1720409995_OLQE6F0.jpg');
+INSERT INTO `tb_kk` VALUES (12, '389027', 'owjgpowj', 'ojgpojpo', '83', '8', 'goiwejgio', 'iojgowj', 'iojoig', '1720412518_image.png');
 
 -- ----------------------------
 -- Table structure for tb_lahir
@@ -150,7 +157,7 @@ CREATE TABLE `tb_pdd`  (
   `updated_at` datetime NOT NULL,
   `file_ktp` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   PRIMARY KEY (`id_pend`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 33 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_pdd
@@ -164,6 +171,7 @@ INSERT INTO `tb_pdd` VALUES (29, '2389237', 'Warga Tetap 1', '8907239', 'Kisaran
 INSERT INTO `tb_pdd` VALUES (30, '8973289', 'Warga Tetap 2', '0928732897', 'Kisaran', '1999-05-04', 'Laki-Laki', 'Alamat Warga Tetap 2', '05', '08', '87', '08', 'Rumah Sendiri', 'Islam', 'Dokter', 'Menikah', 'Indonesia', 'Ada', '2024-07-07 23:07:00', '2024-07-07 23:07:00', 'default.png');
 INSERT INTO `tb_pdd` VALUES (31, '2903298', 'Warga Tetap 3', '382098237987', 'Kisaran', '1999-05-04', 'Laki-Laki', 'Alamat Warga Tetap 3', '05', '99', '88', '87', 'Rumah Sendiri', 'Islam', 'Guru', 'Menikah', 'Indonesia', 'Ada', '2024-07-07 23:07:00', '2024-07-07 23:07:00', 'default.png');
 INSERT INTO `tb_pdd` VALUES (32, '389223987', 'giowejgoiwe', '893792837', 'ogiwgjwe', '1999-05-04', 'Laki-Laki', 'alamat goiwjeoig', '038', '897', '8', '98', 'Rumah Sendiri', 'Islam', 'Guru', 'Menikah', 'Indonesia', 'Ada', '2024-07-08 09:07:00', '2024-07-08 09:07:00', 'default.png');
+INSERT INTO `tb_pdd` VALUES (33, '2389732987', 'oiweejgio', '807987', 'weigoji', '1999-05-04', 'Laki-Laki', 'gwejgoiwej', '040', '05', '08', '88', 'Rumah Sendiri', 'Islam', 'Guru', 'Menikah', 'Indonesia', 'Ada', '2024-07-08 11:07:00', '2024-07-08 11:07:00', '1720412487_OLQE6F0.jpg');
 
 -- ----------------------------
 -- Table structure for tb_pengguna
@@ -220,7 +228,7 @@ CREATE TABLE `tb_surat_domisili`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `tb_pdd_id`(`tb_pdd_id` ASC) USING BTREE,
   CONSTRAINT `tb_surat_domisili_ibfk_1` FOREIGN KEY (`tb_pdd_id`) REFERENCES `tb_pdd` (`id_pend`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_surat_domisili
@@ -236,5 +244,6 @@ INSERT INTO `tb_surat_domisili` VALUES (12, 30, '9gjweoigwje', 'iogjigwe', '037/
 INSERT INTO `tb_surat_domisili` VALUES (13, 30, 'iogjwoigj', 'oijgoiwejg', '038/PWT/VI/2024');
 INSERT INTO `tb_surat_domisili` VALUES (14, 31, 'rogiwj', 'oigjweiogjwe\n', '039/PWT/VI/2024');
 INSERT INTO `tb_surat_domisili` VALUES (15, 31, 'Alasan: Ingin tes aplikasi ini', 'Tujuan: Ingin tes aplikasi ini', '040/PWT/VI/2024');
+INSERT INTO `tb_surat_domisili` VALUES (16, 33, 'Alasan testing', 'Tujuan Testing', '041/PWT/VII/2024');
 
 SET FOREIGN_KEY_CHECKS = 1;
