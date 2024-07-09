@@ -817,9 +817,13 @@ include "inc/koneksi.php";
 
             case 'data-datang':
                 break;
-            case 'add-datang':
+            case 'add-datang': ?>
+                <script src="./public/kelolaSurat/domisili/form.js"></script>
+            <?php
                 break;
-            case 'edit-datang':
+            case 'edit-datang': ?>
+                <script src="./public/kelolaSurat/domisili/form.js"></script>
+            <?php
                 break;
             case 'del-datang':
                 break;

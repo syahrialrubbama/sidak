@@ -9,6 +9,51 @@ if ($actionPage == 'edit') {
 	$rowData = mysqli_fetch_assoc($hasil);
 }
 
+function monthToRomawi($month)
+{
+	switch ($month) {
+		case '01':
+			return 'I';
+			break;
+		case '02':
+			return 'II';
+			break;
+		case '03':
+			return 'III';
+			break;
+		case '04':
+			return 'IV';
+			break;
+		case '05':
+			return 'V';
+			break;
+		case '06':
+			return 'VI';
+			break;
+		case '07':
+			return 'VII';
+			break;
+		case '08':
+			return 'VIII';
+			break;
+		case '09':
+			return 'IX';
+			break;
+		case '10':
+			return 'X';
+			break;
+		case '11':
+			return 'XI';
+			break;
+		case '12':
+			return 'XII';
+			break;
+		default:
+			return 'I';
+			break;
+	}
+}
+
 // handle no surat otomatis
 function handleNoSurat($koneksi)
 {
@@ -20,7 +65,7 @@ function handleNoSurat($koneksi)
 
 	$noUrut = (int) $explode[0];
 	$noUrut++;
-	$noSuratOtomatis = str_pad($noUrut, 3, '0', STR_PAD_LEFT) . '/PWT/VII/2024';
+	$noSuratOtomatis = str_pad($noUrut, 3, '0', STR_PAD_LEFT) . '/PWT/'.monthToRomawi(date('m')).'/'.date('Y');
 	return $noSuratOtomatis;
 }
 $noSuratOtomatis = handleNoSurat($koneksi);

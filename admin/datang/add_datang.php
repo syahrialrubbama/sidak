@@ -21,12 +21,12 @@
 			</div>
 
 			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Jenis Kelain</label>
+				<label class="col-sm-2 col-form-label">Jenis Kelamin</label>
 				<div class="col-sm-3">
 					<select name="jekel" id="jekel" class="form-control">
 						<option>- Pilih -</option>
-						<option>LK</option>
-						<option>PR</option>
+						<option value="LK">Laki-laki</option>
+						<option value="PR">Perempuan</option>
 					</select>
 				</div>
 			</div>
@@ -61,6 +61,29 @@
 				</div>
 			</div>
 
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">NIK Pelapor</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="nik_pelapor" name="nik_pelapor" value="" placeholder="NIK Pelapor...">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">Nama Pelapor</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="nama_pelapor" name="nama_pelapor" value="" placeholder="Nama Pelapor...">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">Jenis Kelamin Pelapor</label>
+				<div class="col-sm-3">
+					<select name="jekel_pelapor" id="jekel_pelapor" class="form-control">
+						<option>- Pilih -</option>
+						<option value="LK">Laki-laki</option>
+						<option value="PR">Perempuan</option>
+					</select>
+				</div>
+			</div>
+
 		</div>
 		<div class="card-footer">
 			<input type="submit" name="Simpan" value="Simpan" class="btn btn-info">
@@ -68,17 +91,25 @@
 		</div>
 	</form>
 </div>
-
 <?php
+	$query = "select * from tb_pdd where status='Ada'";
+	$hasil = mysqli_query($koneksi, $query);
+	$jsonHasil = json_encode(mysqli_fetch_all($hasil, MYSQLI_ASSOC)); ?>
 
+	<script class="json_hasil" data-value="<?= htmlspecialchars($jsonHasil, ENT_QUOTES, 'UTF-8') ?>"></script>
+
+	<?php
     if (isset ($_POST['Simpan'])){
     //mulai proses simpan data
-        $sql_simpan = "INSERT INTO tb_datang (nik, nama_datang, jekel, tgl_datang, pelapor) VALUES (
+        $sql_simpan = "INSERT INTO tb_datang (nik, nama_datang, jekel, tgl_datang, pelapor, nik_pelapor, nama_pelapor, jekel_pelapor) VALUES (
 			'".$_POST['nik']."',
 			'".$_POST['nama_datang']."',
 			'".$_POST['jekel']."',
 			'".$_POST['tgl_datang']."',
-            '".$_POST['pelapor']."')";
+            '".$_POST['pelapor']."',
+            '".$_POST['nik_pelapor']."',
+            '".$_POST['nama_pelapor']."',
+            '".$_POST['jekel_pelapor']."')";
 		$query_simpan = mysqli_query($koneksi, $sql_simpan);
         mysqli_close($koneksi);
 

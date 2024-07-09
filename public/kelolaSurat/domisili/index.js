@@ -18,13 +18,16 @@ $(document).ready(function () {
                     item.tujuan_buat_surat || '-',
                     `
                     <div class="text-center">
-                        <button type="button" class="btn btn-info btn-print" data-id="${item.id}">
+                        <button type="button" class="btn btn-info btn-print mb-2" data-id="${item.id}" title="Print Surat">
                             <i class="fas fa-print"></i>
                         </button>
-                        <button type="button" class="btn btn-warning btn-edit" data-id="${item.id}">
+                        <button type="button" class="btn btn-danger btn-pdf mb-2" data-id="${item.id}" title="PDF Surat">
+                            <i class="fas fa-file-pdf"></i>
+                        </button>
+                        <button type="button" class="btn btn-warning btn-edit mb-2" data-id="${item.id}" title="Edit Surat">
                             <i class="fas fa-edit"></i>
                         </button>
-                        <button type="button" class="btn btn-danger btn-delete" data-id="${item.id}">
+                        <button type="button" class="btn btn-danger btn-delete mb-2" data-id="${item.id}" title="Hapus Surat">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
@@ -140,4 +143,10 @@ $(document).ready(function () {
         const url = 'surat/form/print_domisili.php?id=' + $(this).data('id');
         window.open(url, '_blank');
     })
+
+    body.on('click', '.btn-pdf', function (e) {
+        e.preventDefault();
+        const url = 'surat/form/pdf_domisili.php?id=' + $(this).data('id');
+        window.open(url, '_blank');
+    });
 });
