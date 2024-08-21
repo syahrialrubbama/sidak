@@ -39,8 +39,9 @@ function base64_encode_image($filename)
     $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
     return $base64;
 }
-$base64_stempel = base64_encode_image('../../dist/img/stempel.png');
-$base64_logo = base64_encode_image('../../dist/img/logo-water2.png');
+$base64_stempel = base64_encode_image('../../dist/img/stemple2.png');
+$base64_footer = base64_encode_image('../../dist/img/footer2.jpg');
+$base64_logo = base64_encode_image('../../dist/img/Picture1.png');
 
 ob_start();
 ?>
@@ -69,6 +70,9 @@ ob_start();
         font-weight: bold;
         margin: 20px;
     }
+
+
+    footer {}
     </style>
 </head>
 
@@ -76,13 +80,15 @@ ob_start();
     <section id="header">
         <table style="width: 100%;">
             <tr>
-                <td style="width: 22%;">
-                    <img src="<?= $base64_logo ?>" alt="Logo Surat" style="height: 86px;">
+                <td style="width: 17%;">
+                    <img src="<?= $base64_logo ?>" alt="Logo Surat" style="height: 120px;">
                 </td>
                 <td style="text-align: center;">
-                    <h2 style="margin: 0; padding: 0; margin-bottom: 10px;">PAGUYUBAN WARGA WATER TERRACE</h2>
-                    <span style="font-size:15px;">Cluster Warga Terrace - Grand Wisata</span> <br />
-                    <span style="font-size: 15px;">Desa Lambang Jaya Kecamatan Tambun Selatan Kabupaten Bekasi</span>
+                    <h1 style="margin: 0; padding: 0; margin-bottom: 1px;">RUKUN WARGA 18</h1>
+                    <span style="font-size:17px; font-weight: bold;">Cluster Warga Terrace - Perumahan Grand
+                        Wisata</span> <br />
+                    <span style="font-size: 15px; font-weight: bold;">Desa Lambang Jaya Kecamatan Tambun Selatan <br>
+                        Kabupaten Bekasi</span>
                     <div style="margin-top: 5px; height: 0.5px; background: black;"></div>
                     <div style="margin-top: 2.5px; height: 0.5px; background: black;"></div>
                 </td>
@@ -228,9 +234,9 @@ ob_start();
                     </p>
                     <img src="<?= $base64_stempel ?>" alt="Stempel"
                         style="height: 90px; padding-top:5px; padding-bottom: 5px;"> <br>
-                    <strong style="text-decoration: underline; font-size:15px; padding-top: 10px;">Mohammad
+                    <strong style="text-decoration: underline; font-size:14px; padding-top: 10px;">Mohammad
                         Ilyas</strong><br />
-                    <i style="font-size:15px;">Ketua Paguyuban</i>
+                    <i style="font-size:14px;">Ketua Paguyuban</i>
                 </td>
                 <td style="width: 35%;"></td>
                 <td style="text-align: center; vertical-align: top; width: 25%;">
@@ -243,18 +249,14 @@ ob_start();
             <tr>
                 <td colspan="3" style="height: 10px;"></td>
             </tr>
-            <tr>
-                <td colspan="3">
-                    <i style="font-size: 12px;">Tembusan Kepada Yth:</i>
-                    <ul style="list-style: none;">
-                        <li style="font-size: 12px;">1. Ketua RW 017 – Cluster Water Spring </li>
-                        <li style="font-size: 12px;">2. Arsip</li>
-                    </ul>
-                </td>
-            </tr>
+
         </table>
     </section>
+    <footer style="text-align: center;">
+        <img src="<?= $base64_footer ?>" alt="Stempel" style="height: 60px; padding-top:45px;">
+    </footer>
 </body>
+
 
 </html>
 

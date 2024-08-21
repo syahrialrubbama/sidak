@@ -45,15 +45,15 @@ function tgl_indo($tanggal)
     <title>Surat Pengantar</title>
     <link rel="shortcut icon" href="../../dist/img/logo-water.png" type="image/x-icon">
     <style>
-        * {
-            font-family: Arial, Helvetica, sans-serif;
-        }
+    * {
+        font-family: Arial, Helvetica, sans-serif;
+    }
 
-        @media print {
-            * {
-                -webkit-print-color-adjust: exact;
-            }
+    @media print {
+        * {
+            -webkit-print-color-adjust: exact;
         }
+    }
     </style>
 </head>
 
@@ -242,10 +242,10 @@ function tgl_indo($tanggal)
 </html>
 
 <script>
-    function printAndClose() {
-        window.print();
-        window.onafterprint = function() {
-            window.close();
-        };
-    }
+function printAndClose() {
+    window.print();
+    window.onafterprint = function() {
+        window.close();
+    };
+}
 </script>
