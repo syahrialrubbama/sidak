@@ -1,67 +1,154 @@
-<div class="card card-primary">
+<style>
+#label {
+    font-weight: 450;
+}
+</style>
+<div class="card card-light">
     <div class="card-header">
         <h3 class="card-title">
-            <i class="fa fa-edit"></i> Tambah Data
+            <i class="fa fa-address-book" aria-hidden="true"></i>&nbsp; Tambah Data
         </h3>
     </div>
     <form action="" method="post" enctype="multipart/form-data">
         <div class="card-body">
 
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Nomor KK</label>
+                <label class="col-sm-2 col-form-label" id="label">Nomor Kartu Keluarga</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="no_kk" name="no_kk" placeholder="No KK" required>
+                    <input type="text" class="form-control" id="no_kk" name="no_kk" placeholder="Nomor Kartu Keluarga"
+                        required>
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Kepala Keluarga</label>
+                <label class="col-sm-2 col-form-label" id="label">Kepala Keluarga</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="kepala" name="kepala" placeholder="Kpl Keluarga" required>
+                    <!-- <input type="text" class="form-control" id="kepala" name="kepala" placeholder="Kepala Keluarga"
+                        required> -->
+                    <select name="kepala" id="kepala" class="form-control select2bs4" required autocomplete="off">
+                        <option selected="selected">- Pilih -</option>
+                        <?php
+							// ambil data dari database
+							$query = "select * from tb_pdd where status='Ada'";
+							$hasil = mysqli_query($koneksi, $query);
+							while ($row = mysqli_fetch_array($hasil)) {
+							?>
+                        <option value="<?php echo $row['nama'] ?>">
+                            <?php echo $row['nik'] ?>
+                            -
+                            <?php echo $row['nama'] ?>
+                        </option>
+                        <?php
+							}
+							?>
+                    </select>
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Alamat</label>
+                <label class="col-sm-2 col-form-label" id="label">Alamat Sesuai KK</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="desa" name="desa" placeholder="Alamat" required>
+
+                    <textarea type="text" class="form-control" id="desa" name="desa" placeholder="Alamat Sesuai KK"
+                        cols="30" rows="3" required></textarea>
                 </div>
             </div>
 
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">RT/RW</label>
+            <!-- <div class="form-group row">
+                <label class="col-sm-2 col-form-label" id="label">RT/RW</label>
                 <div class="col-sm-3">
                     <input type="text" class="form-control" id="rt" name="rt" placeholder="RT" required>
                 </div>
                 <div class="col-sm-3">
                     <input type="text" class="form-control" id="rw" name="rw" placeholder="RW" required>
                 </div>
-            </div>
+            </div> -->
+
+            <!-- <div class="form-group row">
+                <label class="col-sm-2 col-form-label" id="label">Kecamatan</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="kec" name="kec" placeholder="Kecamatan Sesuai KK"
+                        required>
+                </div>
+            </div> -->
+            <!-- 
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" id="label">Kabupaten</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="kab" name="kab" placeholder="Kabupaten Sesuai KK"
+                        required>
+                </div>
+            </div> -->
+
+            <!-- <div class="form-group row">
+                <label class="col-sm-2 col-form-label" id="label">Provinsi</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="prov" name="prov" placeholder="Provinsi Sesuai KK"
+                        required> 
+                    <select name="prov" id="prov" class="form-control select2bs4" required autocomplete="off">
+                        <option selected="selected">- Pilih -</option>
+                        <?php
+							// ambil data dari database
+							$query = "select * from reg_provinces order by name asc";
+							$hasil = mysqli_query($koneksi, $query);
+							while ($row = mysqli_fetch_array($hasil)) {
+							?>
+                        <option value="<?php echo $row['id'] ?>">
+                            <?php echo $row['name'] ?>
+                        </option>
+                        <?php
+							}
+							?>
+                    </select>
+
+                </div>
+            </div> -->
+            <!-- <div class="form-group row">
+                <label class="col-sm-2 col-form-label" id="label">Kota/Kabupaten</label>
+                <div class="col-sm-6">
+                    <select name="kab" id="kab" class="form-control select2bs4" required autocomplete="off">
+                        <option selected="selected">- Pilih -</option>
+                        <?php
+							// ambil data dari database
+							$query = "select * from reg_regencies order by name asc";
+							$hasil = mysqli_query($koneksi, $query);
+							while ($row = mysqli_fetch_array($hasil)) {
+							?>
+                        <option value="<?php echo $row['id'] ?>">
+                            <?php echo $row['name'] ?>
+                        </option>
+                        <?php
+							}
+							?>
+                    </select>
+                </div>
+            </div> -->
+            <!-- <div class="form-group row">
+                <label class="col-sm-2 col-form-label" id="label">Kecamatan</label>
+                <div class="col-sm-6">
+                    <select name="kec" id="kec" class="form-control select2bs4" required autocomplete="off">
+                        <option selected="selected">- Pilih -</option>
+                        <?php
+							// ambil data dari database
+							$query = "select * from reg_districts order by name asc";
+							$hasil = mysqli_query($koneksi, $query);
+							while ($row = mysqli_fetch_array($hasil)) {
+							?>
+                        <option value="<?php echo $row['id'] ?>">
+                            <?php echo $row['name'] ?>
+                        </option>
+                        <?php
+							}
+							?>
+                    </select>
+                </div>
+            </div> -->
 
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Kecamatan</label>
+                <label class="col-sm-2 col-form-label" id="label">Upload KK</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="kec" name="kec" placeholder="Kecamatan" required>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Kabupaten</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" id="kab" name="kab" placeholder="Kabupaten" required>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Provinsi</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" id="prov" name="prov" placeholder="Provinsi" required>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Upload KK</label>
-                <div class="col-sm-6">
-                    <input type="file" class="form-control" id="file_kk" name="file_kk" required>
+                    <input type="file" class="form-control" id="file_kk" name="file_kk" required
+                        style="font-size:14px;">
                 </div>
             </div>
 
@@ -72,7 +159,38 @@
         </div>
     </form>
 </div>
-
+<script>
+$(document).ready(function() {
+    $('#prov').change(function() {
+        var province_id = $(this).val();
+        if (province_id) {
+            $.ajax({
+                url: 'get-cities.php', // Pastikan URL ini benar
+                type: 'GET',
+                data: {
+                    province_id: province_id
+                },
+                dataType: 'json',
+                success: function(data) {
+                    $('#kab').empty();
+                    $('#kab').append(
+                        '<option selected="selected">- Pilih -</option>');
+                    $.each(data, function(key, value) {
+                        $('#kab').append('<option value="' + value.id +
+                            '">' + value.name + '</option>');
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX Error: ' + status + error);
+                }
+            });
+        } else {
+            $('#kab').empty();
+            $('#kab').append('<option selected="selected">- Pilih -</option>');
+        }
+    });
+});
+</script>
 <?php
 
 if (isset($_POST['Simpan'])) {
@@ -87,15 +205,10 @@ if (isset($_POST['Simpan'])) {
     }
 
 
-    $sql_simpan = "INSERT INTO tb_kk (no_kk, kepala, desa, rt, rw, kec, kab, prov, file_kk) VALUES (
+    $sql_simpan = "INSERT INTO tb_kk (no_kk, kepala, desa,  file_kk) VALUES (
         '" . $_POST['no_kk'] . "',
         '" . $_POST['kepala'] . "',
         '" . $_POST['desa'] . "',
-        '" . $_POST['rt'] . "',
-        '" . $_POST['rw'] . "',
-        '" . $_POST['kec'] . "',
-        '" . $_POST['kab'] . "',
-        '" . $_POST['prov'] . "',
         '" . $fileName . "')";
     $query_simpan = mysqli_query($koneksi, $sql_simpan);
     mysqli_close($koneksi);

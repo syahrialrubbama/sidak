@@ -62,8 +62,8 @@ $(document).ready(function () {
                     calculateAge(item.tgl_lh) || '-',
                     item.jekel || '-',
                     item.desa || '-',
-                    item.rt || '-',
-                    item.rw || '-',
+                   `${item.rt || '-'} / ${item.rw || '-'}`,
+                    // item.rw || '-',
                     item.no_kk || '-',
                     item.created_at || '-'
                 ]);
@@ -77,11 +77,11 @@ $(document).ready(function () {
                         { title: "Tanggal Lahir" },
                         { title: "Usia" },
                         { title: "Jenis Kelamin" },
-                        { title: "Desa" },
-                        { title: "RT" },
-                        { title: "RW" },
+                        { title: "Alamat" },
+                        { title: "RT/RW" },
+                        // { title: "RW" },
                         { title: "Nomor KK" },
-                        { title: "Tanggal Terdaftar" }
+                        { title: "Tanggal Dibuat" }
                     ]
                 });
             }

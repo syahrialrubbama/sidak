@@ -55,16 +55,17 @@ body {
                     <img src="dist/img/logo-water2.png" width=170px />
                     <br>
                     <br>
-                    <h5>
+                    <h6>
                         <b>Citizen Management System</b>
-                    </h5>
+                    </h6>
                     <br>
                 </center>
 
 
                 <form action="" method="post">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="username" placeholder="Username" required>
+                        <input type="text" class="form-control" name="username" placeholder="Email" autocomplete="off"
+                            required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -72,7 +73,8 @@ body {
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" name="password" placeholder="Password" required>
+                        <input type="password" class="form-control" name="password" placeholder="Password"
+                            autocomplete="off" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -83,7 +85,7 @@ body {
                         <div class="col-12">
                             <button type="submit" class="btn btn-info btn-block btn-flat" name="btnLogin"
                                 title="Masuk Sistem">
-                                <b>Login System</b>
+                                <b>Login</b>
                             </button>
                         </div>
                 </form>
@@ -113,35 +115,35 @@ body {
 
 
 if (isset($_POST['btnLogin'])) {
-	//anti inject sql
-	$username = mysqli_real_escape_string($koneksi, $_POST['username']);
-	$password = mysqli_real_escape_string($koneksi, $_POST['password']);
+    //anti inject sql
+    $username = mysqli_real_escape_string($koneksi, $_POST['username']);
+    $password = mysqli_real_escape_string($koneksi, $_POST['password']);
 
-	//query login
-	$sql_login = "SELECT * FROM tb_pengguna WHERE BINARY username='$username' AND password='$password'";
-	$query_login = mysqli_query($koneksi, $sql_login);
-	$data_login = mysqli_fetch_array($query_login, MYSQLI_BOTH);
-	$jumlah_login = mysqli_num_rows($query_login);
+    //query login
+    $sql_login = "SELECT * FROM tb_pengguna WHERE BINARY username='$username' AND password='$password'";
+    $query_login = mysqli_query($koneksi, $sql_login);
+    $data_login = mysqli_fetch_array($query_login, MYSQLI_BOTH);
+    $jumlah_login = mysqli_num_rows($query_login);
 
 
-	if ($jumlah_login == 1) {
-		session_start();
-		$_SESSION["ses_id"] = $data_login["id_pengguna"];
-		$_SESSION["ses_nama"] = $data_login["nama_pengguna"];
-		$_SESSION["ses_username"] = $data_login["username"];
-		$_SESSION["ses_password"] = $data_login["password"];
-		$_SESSION["ses_level"] = $data_login["level"];
+    if ($jumlah_login == 1) {
+        session_start();
+        $_SESSION["ses_id"] = $data_login["id_pengguna"];
+        $_SESSION["ses_nama"] = $data_login["nama_pengguna"];
+        $_SESSION["ses_username"] = $data_login["username"];
+        $_SESSION["ses_password"] = $data_login["password"];
+        $_SESSION["ses_level"] = $data_login["level"];
 
-		echo "<script>
+        echo "<script>
 			Swal.fire({title: 'Login Berhasil',text: '',icon: 'success',confirmButtonText: 'OK'
 			}).then((result) => {if (result.value)
 				{window.location = 'index.php';}
 			})</script>";
-	} else {
-		echo "<script>
+    } else {
+        echo "<script>
 			Swal.fire({title: 'Login Gagal',text: '',icon: 'error',confirmButtonText: 'OK'
 			}).then((result) => {if (result.value)
 				{window.location = 'login.php';}
 			})</script>";
-	}
+    }
 }

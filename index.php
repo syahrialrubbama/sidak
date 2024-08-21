@@ -43,16 +43,37 @@ include "inc/koneksi.php";
     <!-- Alert -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <script src="plugins/alert.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <style>
+.navbar-nav .user-dropdown {
+    display: flex;
+    align-items: center;
+}
 
+.navbar-nav .user-dropdown img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.navbar-nav .user-dropdown .user-name {
+    margin-left: 10px;
+    color: black;
+}
+
+.dropdown-menu {
+    right: 0;
+    left: auto;
+}
 </style>
 
 <body class="hold-transition sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-red navbar-light" style="background-color: #343A40;">
+        <nav class="main-header navbar navbar-expand navbar-red navbar-light" style="background-color: #182444;">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -63,8 +84,31 @@ include "inc/koneksi.php";
 
             </ul>
 
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle user-dropdown" href="#" id="userDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #182444;">
+                            <img src="dist/img/user3.png" alt="User Image">
+                            <span class="user-name" style="color: #fff;"> <?php echo $data_nama; ?></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="?page=report-data-warga"><i class="bi bi-person"></i> My
+                                Report</a>
+                            <a class="dropdown-item" href="?page=data-pengguna"><i class="bi bi-gear"></i> User
+                                Management</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" onclick="return confirm('Apakah anda yakin akan keluar ?')"
+                                href="logout.php"><i class="bi bi-box-arrow-right"></i>
+                                Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
             <!-- SEARCH FORM -->
-            <ul class="navbar-nav ml-auto">
+            <!-- <ul class="navbar-nav ml-auto">
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="index.php" class="nav-link">
                         <font color="white">
@@ -72,132 +116,155 @@ include "inc/koneksi.php";
                         </font>
                     </a>
                 </li>
-            </ul>
+            </ul> -->
 
         </nav>
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #182444;">
             <!-- Brand Logo -->
             <a href="index.php" class="brand-link">
                 <img src="dist/img/logo-water.png" alt="AdminLTE Logo" class="brand-image" style="opacity: .8">
-                <span class="brand-text"> Water Teracce</span>
+                <span class="brand-text" style="color: #fff;"> Water Teracce</span>
             </a>
 
             <!-- Sidebar -->
+
             <div class="sidebar">
                 <!-- Sidebar user (optional) -->
-                <div class="user-panel mt-2 pb-2 mb-2 d-flex">
+                <div class="">
+                    <br>
                     <div class="image">
                         <!-- <img src="dist/img/logo-water.ico"> -->
                     </div>
-                    <div class="info">
+                    <!-- <div class="info">
                         <a href="index.php" class="d-block">
                             <?php echo $data_nama; ?>
                         </a>
                         <span class="badge badge-success">
-                            <!-- <?php echo $data_level; ?> -->
+                            <?php echo $data_level; ?> 
                             Online
                         </span>
-                    </div>
+                    </div> -->
                 </div>
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
 
                         <!-- Level  -->
                         <?php
                         if ($data_level == "Administrator") {
                         ?>
-                            <li class="nav-item">
-                                <a href="index.php" class="nav-link">
-                                    <i class="nav-icon fas fa-tachometer-alt" style="font-size:14px;"></i>
-                                    <p>
-                                        Dashboard
-                                    </p>
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a href="index.php" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt" style="font-size:14px;"></i>
+                                <p style="color: #fff;">
+                                    Dashboard
+                                </p>
+                            </a>
+                        </li>
 
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-list" style="font-size:14px;"></i>
-                                    <p>
-                                        Kelola Data
-                                        <i class="fas fa-angle-left right"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="?page=data-pend" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Data Warga</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="?page=data-kartu" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Data Kartu Keluarga</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-list" style="font-size:14px;"></i>
+                                <p style="color: #fff;">
+                                    Kelola Data
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="?page=data-pend" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Data Warga</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="?page=data-kartu" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Data Kartu Keluarga</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-chart-bar" style="font-size:14px;"></i>
-                                    <p>
-                                        Sirkulasi Penduduk
-                                        <i class="fas fa-angle-left right"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="?page=data-lahir" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Data Lahir</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="?page=data-mendu" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Data Meninggal</p>
-                                        </a>
-                                    </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-sync-alt" style="font-size:14px;"></i>
+                                <p style="color: #fff;">
+                                    Sirkulasi Warga
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="?page=data-lahir" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Data Kelahiran</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="?page=data-mendu" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Data Meninggal</p>
+                                    </a>
+                                </li>
 
-                                    <li class="nav-item">
-                                        <a href="?page=data-datang" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Data Pendatang</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="?page=data-pindah" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Data Pindah</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                                <!-- <li class="nav-item">
+                                    <a href="?page=data-datang" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Data Pendatang</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="?page=data-pindah" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Data Pindah</p>
+                                    </a>
+                                </li> -->
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="?page=data-datang" class="nav-link">
+                                <i class="nav-icon fas fas fa-download" style="font-size:14px;"></i>
+                                <p style="color: #fff;">
+                                    Data Pendatang
 
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-file-pdf" style="font-size:15px;"></i>
-                                    <p>
-                                        Kelola Surat
-                                        <i class="fas fa-angle-left right"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
+                                </p>
+                            </a>
 
-                                    <li class="nav-item">
-                                        <a href="?page=suket-domisili" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Surat Pengantar</p>
-                                        </a>
-                                    </li>
-                                    <!-- <li class="nav-item">
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="?page=data-pindah" class="nav-link">
+                                <i class="nav-icon fas fa-upload" style="font-size:14px;"></i>
+                                <p style="color: #fff;">
+                                    Data Pindah
+
+                                </p>
+                            </a>
+
+                        </li>
+
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-file-pdf" style="font-size:15px;"></i>
+                                <p style="color: #fff;">
+                                    Kelola Surat
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+
+                                <li class="nav-item">
+                                    <a href="?page=suket-domisili" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Surat Pengantar</p>
+                                    </a>
+                                </li>
+                                <!-- <li class="nav-item">
                                         <a href="?page=suket-lahir" class="nav-link">
                                             <i class="nav-icon far fa-circle text-warning"></i>
                                             <p>Su-Ket Kelahiran</p>
@@ -221,270 +288,331 @@ include "inc/koneksi.php";
                                             <p>Su-Ket Pindah</p>
                                         </a>
                                     </li> -->
-                                </ul>
-                            </li>
+                            </ul>
+                        </li>
 
 
-                            <li class="nav-item has-treeview">
-                                <!-- <a href="#" class="nav-link">
+                        <li class="nav-item has-treeview">
+                            <!-- <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-print" style="font-size:14px;"></i>
                                     <p>
                                         Kelola Laporan
                                         <i class="fas fa-angle-left right"></i>
                                     </p>
                                 </a> -->
-                                <ul class="nav nav-treeview">
+                            <ul class="nav nav-treeview">
 
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Data Penduduk</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Data Kartu Keluarga</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Data Lahir</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Data Meninggal</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Data Pendatang</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Data Pindah</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Data Penduduk</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Data Kartu Keluarga</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Data Lahir</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Data Meninggal</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Data Pendatang</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Data Pindah</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
-                            <li class="nav-header">Report</li>
+                        <li class="nav-header">Report</li>
 
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-print" style="font-size:14px;"></i>
-                                    <p>
-                                        Laporan Data Warga
-                                        <i class="fas fa-angle-left right"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="?page=report-data-warga" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Data Penduduk</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-print" style="font-size:14px;"></i>
+                                <p style="color: #fff;">
+                                    Laporan
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="?page=report-data-warga" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Data Warga</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
-                            <li class="nav-header">Setting</li>
+                        <li class="nav-header">Setting</li>
+                        <li class="nav-item">
+                            <a href="?page=data-pengguna" class="nav-link">
+                                <i class="nav-icon fas fa-user" style="font-size:14px;"></i>
+                                <p style="color: #fff;">
+                                    Management User
+                                </p>
+                            </a>
+                        </li>
 
-                            <li class="nav-item">
-                                <a href="?page=data-pengguna" class="nav-link">
-                                    <i class="nav-icon fas fa-user" style="font-size:14px;"></i>
-                                    <p>
-                                        Management User
-                                    </p>
-                                </a>
-                            </li>
+
 
                         <?php
-                        } elseif ($data_level == "Kaur Pemerintah") {
+                        } elseif ($data_level == "Ketua RW") {
                         ?>
 
-                            <li class="nav-item">
-                                <a href="index.php" class="nav-link">
-                                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                                    <p>
-                                        Dashboard
-                                    </p>
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a href="index.php" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt" style="font-size:14px;"></i>
+                                <p style="color: #fff;">
+                                    Dashboard
+                                </p>
+                            </a>
+                        </li>
 
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-table"></i>
-                                    <p>
-                                        Kelola Data
-                                        <i class="fas fa-angle-left right"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="?page=data-pend" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Data Penduduk</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="?page=data-kartu" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Data Kartu Keluarga</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-list" style="font-size:14px;"></i>
+                                <p style="color: #fff;">
+                                    Kelola Data
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="?page=data-pend" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Data Warga</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="?page=data-kartu" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Data Kartu Keluarga</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-cogs"></i>
-                                    <p>
-                                        Sirkulasi Penduduk
-                                        <i class="fas fa-angle-left right"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="?page=data-lahir" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Data Lahir</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="?page=data-mendu" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Data Meninggal</p>
-                                        </a>
-                                    </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-sync-alt" style="font-size:14px;"></i>
+                                <p style="color: #fff;">
+                                    Sirkulasi Warga
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="?page=data-lahir" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Data Kelahiran</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="?page=data-mendu" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Data Meninggal</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="?page=data-datang" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">
+                                            Data Pendatang
 
-                                    <li class="nav-item">
-                                        <a href="?page=data-datang" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Data Pendatang</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="?page=data-pindah" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Data Pindah</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="?page=data-pindah" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">
+                                            Data Pindah
 
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-file"></i>
-                                    <p>
-                                        Kelola Surat
-                                        <i class="fas fa-angle-left right"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
+                                        </p>
+                                    </a>
 
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Su-Ket Domisili</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
+                                </li>
+
+                                <!-- <li class="nav-item">
+                                    <a href="?page=data-datang" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Data Pendatang</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="?page=data-pindah" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Data Pindah</p>
+                                    </a>
+                                </li> -->
+                            </ul>
+                        </li>
+                        <!-- <li class="nav-item has-treeview">
+                            <a href="?page=data-datang" class="nav-link">
+                                <i class="nav-icon fas fas fa-download" style="font-size:14px;"></i>
+                                <p style="color: #fff;">
+                                    Data Pendatang
+
+                                </p>
+                            </a>
+
+                        </li> -->
+
+
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-clipboard" style="font-size:15px;"></i>
+                                <p style="color: #fff;">
+                                    Approval Surat
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+
+                                <li class="nav-item">
+                                    <a href="?page=suket-domisili" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Surat Pengantar</p>
+                                    </a>
+                                </li>
+                                <!-- <li class="nav-item">
+                                        <a href="?page=suket-lahir" class="nav-link">
                                             <i class="nav-icon far fa-circle text-warning"></i>
                                             <p>Su-Ket Kelahiran</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
+                                        <a href="?page=suket-mati" class="nav-link">
                                             <i class="nav-icon far fa-circle text-warning"></i>
                                             <p>Su-Ket Kematian</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
+                                        <a href="?page=suket-datang" class="nav-link">
                                             <i class="nav-icon far fa-circle text-warning"></i>
                                             <p>Su-Ket Pendatang</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
+                                        <a href="?page=suket-pindah" class="nav-link">
                                             <i class="nav-icon far fa-circle text-warning"></i>
                                             <p>Su-Ket Pindah</p>
                                         </a>
-                                    </li>
-                                </ul>
-                            </li>
+                                    </li> -->
+                            </ul>
+                        </li>
 
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-print"></i>
+
+                        <li class="nav-item has-treeview">
+                            <!-- <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-print" style="font-size:14px;"></i>
                                     <p>
                                         Kelola Laporan
                                         <i class="fas fa-angle-left right"></i>
                                     </p>
-                                </a>
-                                <ul class="nav nav-treeview">
+                                </a> -->
+                            <ul class="nav nav-treeview">
 
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Data Penduduk</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Data Kartu Keluarga</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Data Lahir</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Data Meninggal</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Data Pendatang</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Data Pindah</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Data Penduduk</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Data Kartu Keluarga</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Data Lahir</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Data Meninggal</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Data Pendatang</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Data Pindah</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
-                            <li class="nav-header">Setting</li>
+                        <li class="nav-header">Report</li>
+
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-print" style="font-size:14px;"></i>
+                                <p style="color: #fff;">
+                                    Laporan
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="?page=report-data-warga" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p style="color: #fff;">Data Warga</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- <li class="nav-header">Setting</li> -->
+                        <!-- <li class="nav-item">
+                            <a href="?page=data-pengguna" class="nav-link">
+                                <i class="nav-icon fas fa-user" style="font-size:14px;"></i>
+                                <p style="color: #fff;">
+                                    Management User
+                                </p>
+                            </a>
+                        </li> -->
 
                         <?php
                         }
                         ?>
 
-                        <li class="nav-item">
-                            <a onclick="return confirm('Apakah anda yakin akan keluar ?')" href="logout.php" class="nav-link">
+                        <!-- <li class="nav-item">
+                            <a onclick="return confirm('Apakah anda yakin akan keluar ?')" href="logout.php"
+                                class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt" style="font-size:14px;"></i>
                                 <p>
                                     Logout
                                 </p>
                             </a>
-                        </li>
+                        </li> -->
 
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -645,7 +773,7 @@ include "inc/koneksi.php";
                         // Auto Halaman Home Pengguna
                         if ($data_level == "Administrator") {
                             include "home/admin.php";
-                        } elseif ($data_level == "Kaur Pemerintah") {
+                        } elseif ($data_level == "Ketua RW") {
                             include "home/kaur.php";
                         }
                     }
@@ -661,11 +789,11 @@ include "inc/koneksi.php";
             <div class="float-right d-none d-sm-block">
                 Copyright &copy;
                 <a target="_blank" href="">
-                    <strong> Skripsi</strong>
+                    <strong> PT. Megaduta Artha Megah</strong>
                 </a>
                 All rights reserved.
             </div>
-            <b>Water Teracce</b>
+            <b style="color: #fff;">Water Teracce</b>
         </footer>
 
         <!-- Control Sidebar -->
@@ -718,29 +846,29 @@ include "inc/koneksi.php";
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        $(function() {
-            $("#example1").DataTable();
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-            });
+    $(function() {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
         });
+    });
     </script>
 
     <script>
-        $(function() {
-            //Initialize Select2 Elements
-            $('.select2').select2()
+    $(function() {
+        //Initialize Select2 Elements
+        $('.select2').select2()
 
-            //Initialize Select2 Elements
-            $('.select2bs4').select2({
-                theme: 'bootstrap4'
-            })
+        //Initialize Select2 Elements
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
         })
+    })
     </script>
 
 
@@ -818,20 +946,20 @@ include "inc/koneksi.php";
             case 'data-datang':
                 break;
             case 'add-datang': ?>
-                <script src="./public/kelolaSurat/domisili/form.js"></script>
-            <?php
+    <script src="./public/kelolaSurat/domisili/form.js"></script>
+    <?php
                 break;
             case 'edit-datang': ?>
-                <script src="./public/kelolaSurat/domisili/form.js"></script>
-            <?php
+    <script src="./public/kelolaSurat/domisili/form.js"></script>
+    <?php
                 break;
             case 'del-datang':
                 break;
 
                 //suket
             case 'suket-domisili': ?>
-                <script src="./public/kelolaSurat/domisili/index.js"></script>
-            <?php
+    <script src="./public/kelolaSurat/domisili/index.js"></script>
+    <?php
                 break;
             case 'suket-lahir':
                 break;
@@ -842,25 +970,25 @@ include "inc/koneksi.php";
             case 'suket-pindah':
                 break;
             case 'report-data-warga': ?>
-                <script src="./public/report/dataWarga/index.js"></script>
-            <?php
+    <script src="./public/report/dataWarga/index.js"></script>
+    <?php
                 break;
             default: ?>
-                <script>
-                    console.log('ERROR !');
-                </script>
-            <?php
+    <script>
+    console.log('ERROR !');
+    </script>
+    <?php
                 break;
         }
     } else {
         // Auto Halaman Home Pengguna
         if ($data_level == "Administrator") { ?>
-            <script src="./public/dashboard/dataWarga/index.js"></script>
-        <?php
-        } elseif ($data_level == "Kaur Pemerintah") { ?>
-            <script>
-                console.log('Kaur pemerintah !');
-            </script>
+    <script src="./public/dashboard/dataWarga/index.js"></script>
+    <?php
+        } elseif ($data_level == "Ketua RW") { ?>
+    <script>
+    console.log('Ketua RW !');
+    </script>
     <?php
         }
     }

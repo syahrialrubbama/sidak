@@ -6,93 +6,108 @@ if (isset($_GET['kode'])) {
 	$data_cek = mysqli_fetch_array($query_cek, MYSQLI_BOTH);
 }
 ?>
+<style>
+#label {
+    font-weight: 450;
+}
+</style>
+<div class="card card-light">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fa fa-address-book" aria-hidden="true"></i>&nbsp; Ubah Data
+        </h3>
+    </div>
+    <form action="" method="post" enctype="multipart/form-data">
+        <div class="card-body">
 
-<div class="card card-success">
-	<div class="card-header">
-		<h3 class="card-title">
-			<i class="fa fa-edit"></i> Ubah Data
-		</h3>
-	</div>
-	<form action="" method="post" enctype="multipart/form-data">
-		<div class="card-body">
+            <div class="form-group row" hidden>
+                <label class="col-sm-2 col-form-label">No Sistem</label>
+                <div class="col-sm-3">
+                    <input type='text' class="form-control" id="id_kk" name="id_kk"
+                        value="<?php echo $data_cek['id_kk']; ?>" readonly />
+                </div>
+            </div>
 
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">No Sistem</label>
-				<div class="col-sm-3">
-					<input type='text' class="form-control" id="id_kk" name="id_kk" value="<?php echo $data_cek['id_kk']; ?>" readonly />
-				</div>
-			</div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" id="label">Nomor Kartu Keluarga</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="no_kk" name="no_kk"
+                        value="<?php echo $data_cek['no_kk']; ?>" required>
+                </div>
+            </div>
 
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">No KK</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" id="no_kk" name="no_kk" value="<?php echo $data_cek['no_kk']; ?>" required>
-				</div>
-			</div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" id="label">Kepala Keluarga</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="kepala" name="kepala"
+                        value="<?php echo $data_cek['kepala']; ?>" required>
+                </div>
+            </div>
 
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Kpl Keluarga</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" id="kepala" name="kepala" value="<?php echo $data_cek['kepala']; ?>" required>
-				</div>
-			</div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" id="label">Alamat Sesuai KK</label>
+                <div class="col-sm-6">
+                    <textarea type="text" class="form-control" id="desa" name="desa" cols="30" rows="3"
+                        required><?php echo $data_cek['desa']; ?></textarea>
+                </div>
+            </div>
 
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Desa</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" id="desa" name="desa" value="<?php echo $data_cek['desa']; ?>" required>
-				</div>
-			</div>
+            <!-- <div class="form-group row">
+                <label class="col-sm-2 col-form-label">RT/RW</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="rt" name="rt" value="<?php echo $data_cek['rt']; ?>"
+                        required>
+                </div>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="rw" name="rw" value="<?php echo $data_cek['rw']; ?>"
+                        required>
+                </div>
+            </div> -->
 
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">RT/RW</label>
-				<div class="col-sm-3">
-					<input type="text" class="form-control" id="rt" name="rt" value="<?php echo $data_cek['rt']; ?>" required>
-				</div>
-				<div class="col-sm-3">
-					<input type="text" class="form-control" id="rw" name="rw" value="<?php echo $data_cek['rw']; ?>" required>
-				</div>
-			</div>
+            <!-- <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Kecamatan</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="kec" name="kec" value="<?php echo $data_cek['kec']; ?>"
+                        required>
+                </div>
+            </div>
 
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Kecamatan</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" id="kec" name="kec" value="<?php echo $data_cek['kec']; ?>" required>
-				</div>
-			</div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Kabupaten</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="kab" name="kab" value="<?php echo $data_cek['kab']; ?>"
+                        required>
+                </div>
+            </div>
 
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Kabupaten</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" id="kab" name="kab" value="<?php echo $data_cek['kab']; ?>" required>
-				</div>
-			</div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Provinsi</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="prov" name="prov"
+                        value="<?php echo $data_cek['prov']; ?>" required>
+                </div>
+            </div> -->
 
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Provinsi</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" id="prov" name="prov" value="<?php echo $data_cek['prov']; ?>" required>
-				</div>
-			</div>
-
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Upload KK</label>
-				<div class="col-sm-6">
-					<input type="file" class="form-control" id="file_kk" name="file_kk" required>
-					<div style="margin-top: 10px;"></div>
-					<a href="public/upload/kartuKeluarga/<?php echo $data_cek['file_kk']; ?>">
-						<img src="public/upload/kartuKeluarga/<?php echo $data_cek['file_kk']; ?>" alt="" style="width: 100px;">
-					</a>
-				</div>
-			</div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" id="label">Upload KK</label>
+                <div class="col-sm-6">
+                    <input type="file" class="form-control" style="font-size:14px;" id="file_kk" name="file_kk"
+                        required>
+                    <div style="margin-top: 10px;"></div>
+                    <a href="public/upload/kartuKeluarga/<?php echo $data_cek['file_kk']; ?>">
+                        <img src="public/upload/kartuKeluarga/<?php echo $data_cek['file_kk']; ?>" alt=""
+                            style="width: 100px;">
+                    </a>
+                </div>
+            </div>
 
 
-		</div>
-		<div class="card-footer">
-			<input type="submit" name="Ubah" value="Simpan" class="btn btn-success">
-			<a href="?page=data-kartu" title="Kembali" class="btn btn-secondary">Batal</a>
-		</div>
-	</form>
+        </div>
+        <div class="card-footer">
+            <input type="submit" name="Ubah" value="Simpan" class="btn btn-info">
+            <a href="?page=data-kartu" title="Kembali" class="btn btn-secondary">Batal</a>
+        </div>
+    </form>
 </div>
 
 

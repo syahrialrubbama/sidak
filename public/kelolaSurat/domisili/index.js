@@ -10,25 +10,26 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 $('#dataTableSuratDomisili').DataTable().destroy();
+                
                 const formattedData = data.result.map((item, index) => [
                     index + 1,
-                    `${item.nik} - ${item.nama}` || '-',
                     item.no_surat || '-',
+                    `${item.nik} - ${item.nama}` || '-',
                     item.alasan_buat_surat || '-',
                     item.tujuan_buat_surat || '-',
+                   
                     `
                     <div class="text-center">
-                        <button type="button" class="btn btn-info btn-print mb-2" data-id="${item.id}" title="Print Surat">
-                            <i class="fas fa-print"></i>
+                    ${item.tujuan_buat_surat !== 'Surat Pengantar Diproses' ? `
+                        <button type="button" class="btn btn-info btn-pdf mb-2 btn-sm" data-id="${item.id}" title="PDF Surat" style="font-size: 11px;">
+                            <i class="fas fa-print" style="font-size: 11px;"></i>
                         </button>
-                        <button type="button" class="btn btn-danger btn-pdf mb-2" data-id="${item.id}" title="PDF Surat">
-                            <i class="fas fa-file-pdf"></i>
+                         ` : ''}
+                        <button type="button" class="btn btn-dark btn-edit mb-2 btn-sm" data-id="${item.id}" title="Edit Surat"  style="font-size: 11px;">
+                            <i class="fas fa-tag" style="font-size: 11px;"></i>
                         </button>
-                        <button type="button" class="btn btn-warning btn-edit mb-2" data-id="${item.id}" title="Edit Surat">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-delete mb-2" data-id="${item.id}" title="Hapus Surat">
-                            <i class="fas fa-trash"></i>
+                        <button type="button" class="btn btn-danger btn-delete mb-2 btn-sm" data-id="${item.id}" title="Hapus Surat"  style="font-size: 11px;">
+                            <i class="fas fa-trash" style="font-size: 11px;"></i>
                         </button>
                     </div>
                     `
@@ -37,11 +38,11 @@ $(document).ready(function () {
                 $('#dataTableSuratDomisili').DataTable({
                     data: formattedData,
                     columns: [
-                        { title: "No" },
-                        { title: "Warga" },
-                        { title: "No. Surat" },
-                        { title: "Alasan Buat Surat" },
-                        { title: "Tujuan Buat Surat" },
+                        { title: "No" },                        
+                        { title: "Nomor Surat" },
+                        { title: "Nama Warga" },
+                        { title: "Maksud dan Tujuan" },
+                        { title: "Status" },
                         { title: "Action" }
                     ]
                 });
@@ -54,7 +55,7 @@ $(document).ready(function () {
         e.preventDefault();
         $('#modalFormLg').modal('show');
 
-        $('#modalFormLgLabel').html('Tambah Surat Domisili');
+        $('#modalFormLgLabel').html('Tambah Surat Pengantar');
         $.ajax({
             url: './surat/form/add_surat_domisili.php',
             type: 'get',
@@ -118,7 +119,7 @@ $(document).ready(function () {
         e.preventDefault();
         $('#modalFormLg').modal('show');
 
-        $('#modalFormLgLabel').html('Edit Surat Domisili');
+        $('#modalFormLgLabel').html('Edit Surat Pengantar');
         $.ajax({
             url: './surat/form/add_surat_domisili.php',
             type: 'get',

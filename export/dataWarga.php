@@ -59,7 +59,7 @@ $header = [
     'tempat_lh' => 'Tempat Lahir',
     'tgl_lh' => 'Tanggal Lahir',
     'jekel' => 'Jenis Kelamin',
-    'desa' => 'Desa',
+    'desa' => 'Alamat',
     'blok' => 'Blok',
     'nomor_rumah' => 'Nomor Rumah',
     'rt' => 'RT',
@@ -114,4 +114,3 @@ header('Cache-Control: max-age=0');
 
 $writer->save('php://output');
 exit;
-?>

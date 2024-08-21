@@ -9,11 +9,16 @@ if (isset($_GET['kode'])) {
 }
 ?>
 
+<style>
+#label {
+    font-weight: 450;
 
-<div class="card card-secondary">
+}
+</style>
+<div class="card card-light">
     <div class="card-header">
         <h3 class="card-title">
-            <i class="fa fa-user" aria-hidden="true"></i> Anggota Kartu Keluarga
+            Anggota Keluarga (Sesuai KK)
         </h3>
     </div>
     <form action="" method="post" enctype="multipart/form-data">
@@ -21,28 +26,39 @@ if (isset($_GET['kode'])) {
             <input type='hidden' class="form-control" id="id_kk" name="id_kk" value="<?php echo $data_cek['id_kk']; ?>"
                 readonly />
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">No KK | KPl Keluarga</label>
-                <div class="col-sm-4">
+                <label class="col-sm-2 col-form-label" id="label">Nomor Kartu Keluarga</label>
+                <div class="col-sm-8">
                     <input type="text" class="form-control" id="no_kk" name="no_kk"
                         value="<?php echo $data_cek['no_kk']; ?>" readonly />
                 </div>
-                <div class="col-sm-4">
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" id="label">Kepala Keluarga</label>
+                <div class="col-sm-8">
                     <input type="text" class="form-control" id="kepala" name="kepala"
                         value="<?php echo $data_cek['kepala']; ?>" readonly />
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Alamat</label>
+                <label class="col-sm-2 col-form-label" id="label">Alamat Sesuai KK</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control"
-                        value="<?php echo $data_cek['desa']; ?>, RT <?php echo $data_cek['rt']; ?> RW <?php echo $data_cek['rw']; ?> (<?php echo $data_cek['kec']; ?> - <?php echo $data_cek['kab']; ?> - <?php echo $data_cek['prov']; ?>)"
-                        readonly />
+                    <textarea type="text" class="form-control" value="" cols="30" rows="3"
+                        readonly><?php echo $data_cek['desa']; ?></textarea>
                 </div>
             </div>
+            <br>
+            <p><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;Tambahkan anggota keluarga <br>
+                <span style="font-size:13.5px;"> Sesuaikan
+                    dengan susunan kartu keluarga
+                    dimulai
+                    dari Kepala
+                    Keluarga</span>
+            </p>
 
+            <hr>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Anggota</label>
+                <label class="col-sm-2 col-form-label" id="label">Nama</label>
                 <div class="col-sm-4">
                     <select name="id_pend" id="id_pend" class="form-control select2bs4" required>
                         <option selected="selected">- Penduduk -</option>
@@ -63,7 +79,7 @@ if (isset($_GET['kode'])) {
                     </select>
                 </div>
                 <div class="col-sm-3">
-                    <select name="hubungan" id="hubungan" class="form-control">
+                    <select name="hubungan" id="hubungan" class="form-control select2bs4">
                         <option>- Hub Keluarga -</option>
                         <option>Kepala Keluarga</option>
                         <option>Istri</option>
@@ -75,61 +91,61 @@ if (isset($_GET['kode'])) {
                         <option>Famili Lain</option>
                     </select>
                 </div>
-                <input type="submit" name="Simpan" value="Tambah" class="btn btn-success">
+                <input type="submit" name="Simpan" value="Tambah" class="btn btn-secondary" style="font-size:15px;">
             </div>
+        </div>
+        <div class="card-body" style="margin-top:-20px;">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped" width="100%" style="font-size:15px;">
+                    <thead>
+                        <tr>
+                            <th>NIK</th>
+                            <th>Nama</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Hub Keluarga</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>NIK</th>
-                                <th>Nama</th>
-                                <th>Jekel</th>
-                                <th>Hub Keluarga</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            <?php
+                        <?php
 							$no = 1;
 							$sql = $koneksi->query("SELECT p.nik, p.nama, p.jekel, a.hubungan, a.id_anggota 
 			  from tb_pdd p inner join tb_anggota a on p.id_pend=a.id_pend where status='Ada' and id_kk=$karkel");
 							while ($data = $sql->fetch_assoc()) {
 							?>
 
-                            <tr>
-                                <td>
-                                    <?php echo $data['nik']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $data['nama']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $data['jekel']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $data['hubungan']; ?>
-                                </td>
-                                <td>
-                                    <a href="?page=del-anggota&kode=<?php echo $data['id_anggota']; ?>"
-                                        onclick="return confirm('Apakah anda yakin hapus data ini ?')" title="Hapus"
-                                        class="btn btn-danger btn-sm">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                <?php echo $data['nik']; ?>
+                            </td>
+                            <td>
+                                <?php echo $data['nama']; ?>
+                            </td>
+                            <td>
+                                <?php echo $data['jekel']; ?>
+                            </td>
+                            <td>
+                                <?php echo $data['hubungan']; ?>
+                            </td>
+                            <td>
+                                <a href="?page=del-anggota&kode=<?php echo $data['id_anggota']; ?>"
+                                    onclick="return confirm('Apakah anda yakin hapus data ini ?')" title="Hapus"
+                                    class="btn btn-danger btn-sm" style="font-size:12px;">
+                                    <i class="fa fa-trash" style="font-size:12px;"></i>
+                                </a>
+                            </td>
+                        </tr>
 
-                            <?php
+                        <?php
 							}
 							?>
-                        </tbody>
-                        </tfoot>
-                    </table>
-                </div>
+                    </tbody>
+                    </tfoot>
+                </table>
             </div>
         </div>
+
         <div class="card-footer">
             <a href="?page=data-kartu" title="Kembali" class="btn btn-warning">Kembali</a>
         </div>

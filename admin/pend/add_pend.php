@@ -1,7 +1,7 @@
 <style>
-    #label {
-        font-weight: 450;
-    }
+#label {
+    font-weight: 450;
+}
 </style>
 
 <div class="card card-light">
@@ -23,23 +23,27 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" id="label">Nama</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Warga" required autocomplete="off">
+                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Warga" required
+                        autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" id="label">Nomor Telpon</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Nomor Telpon" required autocomplete="off">
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Nomor Telpon" required
+                        autocomplete="off">
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" id="label">Tempat, Tanggal Lahir</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" id="tempat_lh" name="tempat_lh" placeholder="Tempat Lahir" required>
+                    <input type="text" class="form-control" id="tempat_lh" name="tempat_lh" placeholder="Tempat Lahir"
+                        required>
                 </div>
                 <div class="col-sm-3">
-                    <input type="date" class="form-control" id="tgl_lh" name="tgl_lh" placeholder="Tanggal Lahir" required>
+                    <input type="date" class="form-control" id="tgl_lh" name="tgl_lh" placeholder="Tanggal Lahir"
+                        required>
                 </div>
             </div>
 
@@ -57,7 +61,8 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" id="label">Alamat</label>
                 <div class="col-sm-6">
-                    <textarea type="text" class="form-control" id="desa" name="desa" placeholder="Alamat" cols="30" rows="3" required></textarea>
+                    <textarea type="text" class="form-control" id="desa" name="desa" placeholder="Alamat" cols="30"
+                        rows="3" required></textarea>
                 </div>
             </div>
             <div class="form-group row">
@@ -66,7 +71,8 @@
                     <input type="text" class="form-control" id="blok" name="blok" placeholder="Blok" required>
                 </div>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" id="nomor_rumah" name="nomor_rumah" placeholder="Nomor Rumah" required>
+                    <input type="text" class="form-control" id="nomor_rumah" name="nomor_rumah"
+                        placeholder="Nomor Rumah" required>
                 </div>
             </div>
 
@@ -157,13 +163,15 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" id="label">Kewarganegaraan</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="kewarganegaraan" name="kewarganegaraan" placeholder="Kewarganegaraan" required>
+                    <input type="text" class="form-control" id="kewarganegaraan" name="kewarganegaraan"
+                        placeholder="Kewarganegaraan" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" id="label">Upload KTP</label>
                 <div class="col-sm-6">
-                    <input type="file" class="form-control" id="file_ktp" name="file_ktp" required>
+                    <input type="file" class="form-control" id="file_ktp" name="file_ktp" style="font-size:14px;"
+                        required>
                 </div>
             </div>
         </div>
